@@ -22,7 +22,7 @@ class Login extends React.PureComponent {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ session: { email: 'jundal@live.com', password: '123123' }})
+                body: JSON.stringify({ session: { email, password }})
             }
         ).then(resp => resp.json()).then(res => {
             console.log(res)

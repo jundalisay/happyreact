@@ -7,7 +7,7 @@ import PlaySong from '../screens/PlaySong';
 
 const AppNavigator = StackNavigator(
     {
-        //Login: { screen: Login },
+        // Login: { screen: Login },
         Home: { screen: Home },
         PlaySong: { screen: PlaySong },
     },
