@@ -8,14 +8,13 @@ import ProgressBar from '../components/ProgressBar';
 const soundObject = new Audio.Sound();
 
 class PlaySong extends React.PureComponent {
-    constructor(props) {
-        super(props);
-
+    static navigationOptions = {
+        title: 'Playing'
     }
 
     async componentDidMount() {
         soundObject.setOnPlaybackStatusUpdate(this.playbackStatus)
-        const source = { uri: 'https://zmp3-mp3-s1.zadn.vn/82e12c74f830116e4821/7171863683796474869?authen=exp=1513457543~acl=/82e12c74f830116e4821/*~hmac=ff8f085a0e3f85420b0a17a71efd3a4d' };
+        const source = { uri: 'https://zmp3-mp3-s1.zadn.vn/8d9f98f64cb2a5ecfca3/4273050090907806359?authen=exp=1513485157~acl=/8d9f98f64cb2a5ecfca3/*~hmac=76a7c7d4a53bc98507632a625b772bbd' };
         await soundObject.loadAsync(source, {}, false);
         // this.playSong()
 

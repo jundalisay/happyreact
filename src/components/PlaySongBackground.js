@@ -1,15 +1,22 @@
 import React from 'react';
 import { View, Text, Image, Animated, Easing, StyleSheet } from 'react-native';
+import { Svg } from 'expo';
 
 class PlaySongBackground extends React.PureComponent {
 
     state = {
-        isAnimated: true,
+        isAnimated: false,
         spinValue: new Animated.Value(0)
     }
-
-    componentWillMount() {
+    componentDidMount() {
         this.animated();
+    }
+    playSong() {
+        this.state.isAnimated = true;
+        this.animated();
+    }
+    stopSong() {
+        this.state.isAnimated = false;
     }
 
     animated() {
@@ -34,7 +41,26 @@ class PlaySongBackground extends React.PureComponent {
         })
         return (
             <View style={styles.container}>
-                <Animated.Image style={[styles.image, { transform: [{ rotate: spin }] }]} source={{ uri: this.props.song.artist.photo }} />
+                <View>
+                    <Svg height="300" width="300">
+                        <Svg.Defs>
+                            <Svg.RadialGradient id="grad" cx="50%" cy="50%" rx="50%" ry="50%" fx="50%" fy="50%" gradientUnits="userSpaceOnUse">
+                                <Svg.Stop
+                                    offset="0%"
+                                    stopColor="#ff0"
+                                    stopOpacity="1"
+                                />
+                                <Svg.Stop
+                                    offset="100%"
+                                    stopColor="#eee"
+                                    stopOpacity="1"
+                                />
+                            </Svg.RadialGradient>
+                        </Svg.Defs>
+                        <Svg.Ellipse cx="150" cy="150" rx="150" ry="150" fill="url(#grad)" />
+                    </Svg>
+                    <Animated.Image style={[styles.image, { transform: [{ rotate: spin }] }]} source={{ uri: this.props.song.artist.photo }} />
+                </View>
             </View>
         );
     }
@@ -48,9 +74,10 @@ const styles = StyleSheet.create({
         // backgroundColor: '#2c3e50',
     },
     image: {
-        width: 300,
-        height: 300,
-        borderRadius: 150
+        width: 240,
+        height: 240,
+        borderRadius: 120,
+        position: 'absolute', top: 30, left: 30,
     }
 });
 
